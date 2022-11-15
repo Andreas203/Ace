@@ -1,11 +1,12 @@
 import { createRenderer } from './systems/renderer';
 import { Resizer } from './systems/Resizer';
 
-import { PerspectiveCamera, Scene, WebGLRenderer, Color } from 'three';
+import { PerspectiveCamera, Scene, WebGLRenderer, Color, MeshBasicMaterial, BoxGeometry, Mesh } from 'three';
 
 import { Loop } from './systems/Loop';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { createControls } from './systems/controls';
+import { Player } from './objects/Player';
 
 
 class World {
@@ -15,8 +16,8 @@ class World {
 	loop: Loop;
 	controls: OrbitControls;
 
-	constructor (container: HTMLElement) {
-		this.camera = new PerspectiveCamera(100, window.innerWidth / window.innerHeight, 0.1, 1000);
+	constructor (container: HTMLElement, camera: PerspectiveCamera) {
+		this.camera = camera;
 		this.scene = this.createScene();
 		this.renderer = createRenderer();
 		this.loop = new Loop(this.camera, this.scene, this.renderer);
@@ -51,6 +52,10 @@ class World {
     
         return scene;
     }
+
+	public addPlayer(player: Player) {
+		this.scene.add(player.playerMesh)
+	}
 
 }
 
