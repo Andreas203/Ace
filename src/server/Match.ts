@@ -1,10 +1,15 @@
 import { ConnectedPlayer } from "./ConnectedPlayer";
+import { Set } from "./Set";
 
 class Match{
-    players: ConnectedPlayer[] = [];
+    players: ConnectedPlayer[];
+    sets: [Set, Set, Set];
+    currentSet: number
     
     constructor(){
-
+        this.currentSet = 0;
+        this.players = []
+        this.sets = [new Set(), new Set(), new Set()]
     }
 
     addNewPlayer(player: ConnectedPlayer) {
@@ -22,5 +27,7 @@ class Match{
             player.socket.emit('playerPosition', p.position)
         });
     }
+
+    
 }
 export {Match}
