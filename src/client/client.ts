@@ -23,11 +23,9 @@ async function main () {
 	await world.init();
 
 	socket.on('playerPosition', (p) => {
-		console.log('newPlayer connected');
 		world.addPlayer(new Player(p));	
 	})
 	
-
 	world.start();
 }
 
