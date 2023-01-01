@@ -1,16 +1,16 @@
 import { Vector3 } from "three";
+import { Winner } from "./enums/Winner"
 
 class Game{
     points: [number,number]
-    winner: number = -1;
-
+    winner: Winner = Winner.None;
 
     constructor(){
         this.points = [0,0]
     }
 
     incPoint(player: number) {
-
+        
         var winningPlayer: number = this.points[player]
         var losingPlayer: number = this.points[(player+1)%2]
 

@@ -28,6 +28,28 @@ class Match{
         });
     }
 
+    getGameScore(){
+        return this.getCurrentSet().getCurrentGame()
+    }
+
+    updateGameScore(player: number){
+        this.getCurrentSet().updateGame(player)
+        if(this.getCurrentSet().isFinished() && this.currentSet < 2){
+            this.currentSet += 1
+        }else if(this.getCurrentSet().isFinished()){
+            this.getWinner()
+        }
+    }
+
+    getWinner(){
+        this.sets.forEach(set => {
+            set.getWinner()
+        });
+    }
+
+    getCurrentSet(){
+        return this.sets[this.currentSet]
+    }
     
 }
 export {Match}

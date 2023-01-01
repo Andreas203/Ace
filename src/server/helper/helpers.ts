@@ -9,3 +9,28 @@ const addToAvailableSmallestIndex = (list: number []) => {
     }
     return -1
 }
+
+const mode = (arr: any) => {
+    const mode: any = {};
+    let max: any = 0, count: any = 0;
+  
+    for(let i = 0; i < arr.length; i++) {
+      const item: any = arr[i];
+      
+      if(mode[item]) {
+        mode[item]++;
+      } else {
+        mode[item] = 1;
+      }
+      
+      if(count < mode[item]) {
+        max = item;
+        count = mode[item];
+      }
+    }
+     
+    return max;
+  };
+
+
+export {mode}
